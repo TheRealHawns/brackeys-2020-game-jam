@@ -66,7 +66,6 @@ public class Crop : MonoBehaviour
         {
             Water();
             Watered = true;
-            WaterRespawnAlarm();
         }
     }
 
@@ -92,18 +91,17 @@ public class Crop : MonoBehaviour
             Harvest();
             return;
         }
-        if (!harvestable)
+        waterLevel++;
+        if (soil != null)
         {
-            waterLevel++;
-            if (soil != null)
-            {
-                var soilspr = soil.GetComponent<SpriteRenderer>();
-                soilColor = soilspr.color;
-                soilspr.color = Color.gray;
-            }
-
-            if (waterLevel == soil.plant.wateringCount) harvestable = true;
+            WaterRespawnAlarm();
+            var soilspr = soil.GetComponent<SpriteRenderer>();
+            soilColor = soilspr.color;
+            soilspr.color = Color.gray;
         }
+
+        if (waterLevel == soil.plant.wateringCount) harvestable = true;
+
     }
 
     private void Harvest() //WIP

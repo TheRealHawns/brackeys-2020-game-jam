@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dc6f7d7fc798ece42837f689c5d15ad7, type: 3}
   weight: 4
   value: 125
-  growTime: 15
+  growTime: 40
   wateringCount: 3
   CropPrefab: {fileID: 1594454285420414523, guid: 152161b676020b3408e2c2a35e0ff5d5,
     type: 3}

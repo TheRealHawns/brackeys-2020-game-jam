@@ -65,13 +65,13 @@ public class PlayerInventory : MonoBehaviour
 
         if (plant == plantList[1])
         {
-            PotatoCount += (addOrSubtract * 1);
+            PotatoCount += addOrSubtract;
             return;
         }
 
         if (plant == plantList[2])
         {
-            CarrotCount += (addOrSubtract * 1);
+            CarrotCount += addOrSubtract ;
             return;
         }
         if (plant == plantList[3])
@@ -93,7 +93,7 @@ public class PlayerInventory : MonoBehaviour
     {
         EarningsText.text = "Current Earnings- $" + Earnings.ToString();
         WeightText.text = "Weight Limit- " + CurrentWeight.ToString() + " / 20";
-        ScoreText.text = "Score- " + Score.ToString();
+        ScoreText.text = "Money- $" + Score.ToString();
     }
 }
 
@@ -103,5 +103,6 @@ public enum PlantToPlant
     Potato,
     Carrot,
     Tomato,
-    Grape
+    Grape,
+    MAX_LENGTH
 }

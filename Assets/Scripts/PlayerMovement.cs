@@ -46,7 +46,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            inv.plant = (PlantToPlant)(((int)inv.plant + 1) % (int)PlantToPlant.Grape);
+            inv.plant = (PlantToPlant)(((int)inv.plant + 1) % (int)PlantToPlant.MAX_LENGTH);
+            Debug.Log(inv.plant);
         }
 
     }

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 345c633feee089e4384e6231ba4d5531, type: 3}
+  m_Name: Tomato
+  m_EditorClassIdentifier: 
+  overworldSprites:
+  - {fileID: 21300000, guid: c6733d3493656c646950c223872bfe2e, type: 3}
+  - {fileID: 21300000, guid: 23d5cb47326414c469562e12cf747088, type: 3}
+  - {fileID: 21300000, guid: 3fe548f99936a9944be005c562262d11, type: 3}
+  - {fileID: 21300000, guid: dc6f7d7fc798ece42837f689c5d15ad7, type: 3}
+  weight: 4
+  value: 125
+  growTime: 15
+  wateringCount: 3
+  CropPrefab: {fileID: 1594454285420414523, guid: 152161b676020b3408e2c2a35e0ff5d5,
+    type: 3}

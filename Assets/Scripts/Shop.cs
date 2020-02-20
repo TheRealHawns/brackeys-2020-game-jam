@@ -26,7 +26,7 @@ public class Shop : MonoBehaviour
             PlayerInv.ManageSeeds(PlantToSell, 1);
 
         }
-        PlayerInv.SetEarningText();
+        PlayerInv.SetUIText();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

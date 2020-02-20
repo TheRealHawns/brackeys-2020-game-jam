@@ -108,7 +108,7 @@ public class Crop : MonoBehaviour
     {
         inv.CurrentWeight += soil.plant.weight;
         inv.Earnings += soil.plant.value;
-        inv.SetEarningText();
+        inv.SetUIText();
         Destroy(gameObject);
         if (soil!=null) soil.Reset();
     }

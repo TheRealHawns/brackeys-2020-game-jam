@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Potato
   m_EditorClassIdentifier: 
   overworldSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: c16e9f726403ae14085f39d2ccd36527, type: 3}
+  - {fileID: 21300000, guid: cb50212a87d176d46a3945bdc248bfb6, type: 3}
+  - {fileID: 21300000, guid: 2895e65912ceb874492437e626e6ade2, type: 3}
+  - {fileID: 21300000, guid: cff9da8e57aa13147bbde80f97a75ef2, type: 3}
+  - {fileID: 21300000, guid: 2b01d49c94ece834b80c9fa62504a062, type: 3}
   weight: 3
   value: 25
   growTime: 7

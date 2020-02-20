@@ -16,6 +16,8 @@ public class PlayerInventory : MonoBehaviour
     public int WheatCount = 9999;
     public int PotatoCount = 0;
     public int CarrotCount = 0;
+    public int TomatoCount = 0;
+    public int GrapeCount = 0;
 
     public SOPlant[] plantList;
     public PlantToPlant plant = PlantToPlant.Potato;
@@ -23,6 +25,7 @@ public class PlayerInventory : MonoBehaviour
     TextMeshProUGUI EarningsText;
     TextMeshProUGUI WeightText;
     TextMeshProUGUI ScoreText;
+
 
     private void Start()
     {
@@ -47,6 +50,12 @@ public class PlayerInventory : MonoBehaviour
             case PlantToPlant.Carrot:
                 CanPlant = CarrotCount > 0;
                 return plantList[2];
+            case PlantToPlant.Tomato:
+                CanPlant = TomatoCount > 0;
+                return plantList[3];
+            case PlantToPlant.Grape:
+                CanPlant = GrapeCount > 0;
+                return plantList[4];
         }
     }
 
@@ -65,12 +74,22 @@ public class PlayerInventory : MonoBehaviour
             CarrotCount += (addOrSubtract * 1);
             return;
         }
+        if (plant == plantList[3])
+        {
+            TomatoCount += addOrSubtract;
+            return;
+        }
+        if (plant == plantList[4])
+        {
+            GrapeCount += addOrSubtract;
+            return;
+        }
 
     }
 
     
 
-    internal void SetEarningText()
+    internal void SetUIText()
     {
         EarningsText.text = "Current Earnings- $" + Earnings.ToString();
         WeightText.text = "Weight Limit- " + CurrentWeight.ToString() + " / 20";
@@ -82,5 +101,7 @@ public enum PlantToPlant
 {
     Wheat,
     Potato,
-    Carrot
+    Carrot,
+    Tomato,
+    Grape
 }

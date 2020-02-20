@@ -46,19 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            switch (inv.plant)
-            {
-                case PlantToPlant.Wheat:
-                    inv.plant = PlantToPlant.Potato;
-                    break;
-                case PlantToPlant.Potato:
-                    inv.plant = PlantToPlant.Carrot;
-                    break;
-                case PlantToPlant.Carrot:
-                    inv.plant = PlantToPlant.Wheat;
-                    break;
-            }
-            Debug.Log(inv.plant);
+            inv.plant = (PlantToPlant)(((int)inv.plant + 1) % (int)PlantToPlant.Grape);
         }
 
     }
@@ -72,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         state = State.Wait;
-        yield return new WaitForSecondsRealtime(0.75f);
+        yield return new WaitForSecondsRealtime(1f);
         state = State.Move;
     }
 }

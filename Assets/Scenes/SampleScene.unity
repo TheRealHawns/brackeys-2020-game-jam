@@ -4404,14 +4404,15 @@ MonoBehaviour:
   WeightLimit: 20
   Earnings: 0
   CurrentWeight: 0
-  WheatCount: -2147483648
+  Score: 0
+  WheatCount: 9999
   PotatoCount: 0
   CarrotCount: 0
   plantList:
   - {fileID: 11400000, guid: 11a7bcd9524fe984c8ccd148cf22b310, type: 2}
   - {fileID: 11400000, guid: c88a0ab6956522c4a9d471a3f3bb12f6, type: 2}
   - {fileID: 11400000, guid: 5680ba631fa562140a9269215bc47c6a, type: 2}
-  plant: 1
+  plant: 0
 --- !u!1 &663830819
 GameObject:
   m_ObjectHideFlags: 0

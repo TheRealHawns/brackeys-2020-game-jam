@@ -36,11 +36,17 @@ public class Soil : MonoBehaviour
         }
     }
 
+    bool HasSeeds()
+    {
+        return true;
+    }
+
     public void HandleCrop()
     {
-        plant = playerInventory.returnPlantType();
-        if (!hasCrop)
+        plant = playerInventory.ReturnPlantType(out bool canPlant);
+        if (!hasCrop && canPlant) 
         {
+            playerInventory.SubtractSeed(plant);
             var crop = Instantiate(plant.CropPrefab, transform);
             crop.transform.parent = transform;
             crop.GetComponent<Crop>().SetSoil(this);

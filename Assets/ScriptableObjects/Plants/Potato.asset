@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345c633feee089e4384e6231ba4d5531, type: 3}
   m_Name: Potato
   m_EditorClassIdentifier: 
-  overworldSprites: []
+  overworldSprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   weight: 3
   value: 25
   growTime: 7

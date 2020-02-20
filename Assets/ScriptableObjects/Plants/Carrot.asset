@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 345c633feee089e4384e6231ba4d5531, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
-  overworldSprites: []
+  overworldSprites:
+  - {fileID: 21300000, guid: 76797667505382a40b85edbcd80e6121, type: 3}
+  - {fileID: 21300000, guid: 444cde5db2806594098f3bafefccc1c0, type: 3}
+  - {fileID: 21300000, guid: 06a41b2a10022654283e216d82ea263f, type: 3}
   weight: 2
-  value: 15
+  value: 45
   growTime: 14
   wateringCount: 2
   CropPrefab: {fileID: 7770766459262164132, guid: dbea51cf2f9de5e4c982f2ad3c17f6c4,

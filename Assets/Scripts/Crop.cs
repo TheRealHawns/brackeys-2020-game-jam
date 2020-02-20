@@ -8,6 +8,7 @@ public class Crop : MonoBehaviour
     [SerializeField] PlayerMovement player;
     PlayerInventory inv;
     int waterRespawntime;
+    SpriteRenderer spr;
 
     public bool Watered { get; private set; }
 
@@ -17,7 +18,8 @@ public class Crop : MonoBehaviour
     private Color soilColor;
 
     private void Awake()
-    {  
+    {
+        spr = GetComponent<SpriteRenderer>();
     }
 
 
@@ -73,6 +75,7 @@ public class Crop : MonoBehaviour
         Watered = false;
         var soilspr = soil.GetComponent<SpriteRenderer>();
         soilspr.color = soilColor;
+        if (spr != null) spr.sprite = soil.plant.overworldSprites[waterLevel];
     }
 
     private void WaterRespawnAlarm()
@@ -86,19 +89,21 @@ public class Crop : MonoBehaviour
         player.Water();
         if (harvestable && inv.CurrentWeight + soil.plant.weight <= inv.WeightLimit)
         {
-           
             Harvest();
             return;
-        } 
-        waterLevel++;
-        if (soil != null)
-        {
-            var soilspr = soil.GetComponent<SpriteRenderer>();
-            soilColor = soilspr.color;
-            soilspr.color = Color.black;
         }
+        if (!harvestable)
+        {
+            waterLevel++;
+            if (soil != null)
+            {
+                var soilspr = soil.GetComponent<SpriteRenderer>();
+                soilColor = soilspr.color;
+                soilspr.color = Color.gray;
+            }
 
-        if (waterLevel == soil.plant.wateringCount) harvestable = true;
+            if (waterLevel == soil.plant.wateringCount) harvestable = true;
+        }
     }
 
     private void Harvest() //WIP
@@ -106,7 +111,7 @@ public class Crop : MonoBehaviour
         inv.CurrentWeight += soil.plant.weight;
         inv.Earnings += soil.plant.value;
         inv.SetEarningText();
-        if (soil!=null) soil.Reset();
         Destroy(gameObject);
+        if (soil!=null) soil.Reset();
     }
 }

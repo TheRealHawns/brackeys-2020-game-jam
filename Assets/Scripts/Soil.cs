@@ -20,7 +20,7 @@ public class Soil : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if (collision.gameObject == player.gameObject)
+        if (collision.gameObject == player.gameObject && !hasCrop)
         {
             player.HandleInteraction += HandleCrop;
           
@@ -53,11 +53,12 @@ public class Soil : MonoBehaviour
                 crop.GetComponent<Crop>().SetSoil(this);
                 hasCrop = true;
             }
-        }
+        } 
     }
 
     internal void Reset()
     {
         hasCrop = false;
+        player.HandleInteraction += HandleCrop;
     }
 }

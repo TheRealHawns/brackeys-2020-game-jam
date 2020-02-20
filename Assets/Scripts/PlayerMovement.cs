@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
 
         Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        rb.velocity = movement * moveSpeed * Time.deltaTime ;
+        rb.velocity = movement * moveSpeed;
 
         if (Input.GetKeyDown(KeyCode.E)) 
         {

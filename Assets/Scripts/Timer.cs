@@ -39,6 +39,14 @@ public class Timer : MonoBehaviour
         StartCoroutine(CountDown());
     }
 
+    string GetSeconds()
+    {
+        var sec = (float)startGameLengthTime % 60;
+
+        if (sec < 10) return "0" + sec.ToString();
+        else return sec.ToString();
+        
+    }
 
     IEnumerator CountDown()
     {
@@ -46,7 +54,7 @@ public class Timer : MonoBehaviour
         {
             yield return new WaitForSecondsRealtime(1f);
 
-            timerText.text = string.Format("Time Remaining: {0} : {1}", Mathf.FloorToInt((float)startGameLengthTime/60), startGameLengthTime % 60);
+            timerText.text = string.Format("Time Remaining: {0} : {1}", Mathf.FloorToInt((float)startGameLengthTime/60), GetSeconds());
 
             if (PlantsWaterTime.ContainsKey(startGameLengthTime))
             {

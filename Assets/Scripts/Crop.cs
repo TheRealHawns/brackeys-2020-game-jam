@@ -86,9 +86,10 @@ public class Crop : MonoBehaviour
         player.Water();
         if (harvestable && inv.CurrentWeight + soil.plant.weight <= inv.WeightLimit)
         {
+           
             Harvest();
             return;
-        }
+        } 
         waterLevel++;
         if (soil != null)
         {

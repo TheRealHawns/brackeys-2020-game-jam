@@ -36,21 +36,23 @@ public class Soil : MonoBehaviour
         }
     }
 
-    bool HasSeeds()
-    {
-        return true;
-    }
+   
 
     public void HandleCrop()
     {
-        plant = playerInventory.ReturnPlantType(out bool canPlant);
-        if (!hasCrop && canPlant) 
+        
+        if (!hasCrop) 
         {
-            playerInventory.SubtractSeed(plant);
-            var crop = Instantiate(plant.CropPrefab, transform);
-            crop.transform.parent = transform;
-            crop.GetComponent<Crop>().SetSoil(this);
-            hasCrop = true;
+            plant = playerInventory.ReturnPlantType(out bool canPlant);
+            if (canPlant)
+            {
+                playerInventory.ManageSeeds(plant, -1);
+                Debug.Log("Planting" + plant.name);
+                var crop = Instantiate(plant.CropPrefab, transform);
+                crop.transform.parent = transform;
+                crop.GetComponent<Crop>().SetSoil(this);
+                hasCrop = true;
+            }
         }
     }
 

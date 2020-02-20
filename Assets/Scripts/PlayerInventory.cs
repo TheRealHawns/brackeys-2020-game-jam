@@ -22,11 +22,13 @@ public class PlayerInventory : MonoBehaviour
 
     TextMeshProUGUI EarningsText;
     TextMeshProUGUI WeightText;
+    TextMeshProUGUI ScoreText;
 
     private void Start()
     {
         EarningsText = GameObject.Find("EarningText").GetComponent<TextMeshProUGUI>();
         WeightText = GameObject.Find("WeightText").GetComponent<TextMeshProUGUI>();
+        ScoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
     }
 
     public SOPlant ReturnPlantType(out bool CanPlant)
@@ -48,19 +50,19 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    internal void SubtractSeed(SOPlant plant)
+    internal void ManageSeeds(SOPlant plant, int addOrSubtract)
     {
         if (plant == plantList[0]) return;
 
         if (plant == plantList[1])
         {
-            PotatoCount--;
+            PotatoCount += (addOrSubtract * 1);
             return;
         }
 
         if (plant == plantList[2])
         {
-            CarrotCount--;
+            CarrotCount += (addOrSubtract * 1);
             return;
         }
 
@@ -72,6 +74,7 @@ public class PlayerInventory : MonoBehaviour
     {
         EarningsText.text = "Current Earnings- $" + Earnings.ToString();
         WeightText.text = "Weight Limit- " + CurrentWeight.ToString() + " / 20";
+        ScoreText.text = "Score- " + Score.ToString();
     }
 }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public abstract class Shop : MonoBehaviour
+public class Shop : MonoBehaviour
 {
 
     public SOPlant PlantToSell;
@@ -18,7 +18,16 @@ public abstract class Shop : MonoBehaviour
         PlayerInv = Player.GetComponent<PlayerInventory>();
     }
 
-    public abstract void GiveMerchandise();
+    public void GiveMerchandise()
+    {
+        if (PlayerInv.Score >= Price)
+        {
+            PlayerInv.Score -= Price;
+            PlayerInv.ManageSeeds(PlantToSell, 1);
+
+        }
+        PlayerInv.SetEarningText();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    private int score;
+    GameObject time;
+    int timer;
+    GameObject playerScoreObject;
+    TextMeshProUGUI playerScore;
+    GameObject player;
 
     private void Awake()
     {
@@ -15,13 +23,40 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+ 
+        fader.gameObject.SetActive(true);
+        
+    }
+    
+    public void Update()
+    {
+        if (time == null)
+        {
+            time = GameObject.FindGameObjectWithTag("Timer");
+        }
         else
         {
-            Destroy(gameObject);
+            timer = time.GetComponent<Timer>().startGameLengthTime;
+            EndGame();
         }
-
-
-        fader.gameObject.SetActive(true);
+        if ( player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        else
+        {
+            score = player.GetComponent<PlayerInventory>().Score;
+        }
+        if (playerScoreObject == null)
+        {
+            playerScoreObject = GameObject.FindGameObjectWithTag("Score");
+        }
+        else
+        {
+            playerScore = playerScoreObject.GetComponentInChildren<TextMeshProUGUI>();
+            playerScore.text = score.ToString();
+        }
+       
     }
 
     public Animator animator;
@@ -43,5 +78,14 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(levelToLoad);
     }
+    public void EndGame()
+    {
+        if (timer <= 0)
+        {
+           
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+   
 
 }

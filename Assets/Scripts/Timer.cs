@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
     #endregion
 
     [SerializeField] int GameLengthTime = 600;
-    int startGameLengthTime;
+    [HideInInspector] public int startGameLengthTime;
 
     Dictionary<int, Crop> PlantsWaterTime = new Dictionary<int, Crop>();
     TextMeshProUGUI timerText;

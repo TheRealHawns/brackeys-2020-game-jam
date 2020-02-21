@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - TimeText
+  - InsufficientFund
+  - Timer
+  - Score
   layers:
   - Default
   - TransparentFX

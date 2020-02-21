@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Collider2D))]
 public class Shop : MonoBehaviour
 {
+    public Image insufficientFund;
 
     public SOPlant PlantToSell;
     public int Price;
@@ -16,6 +18,7 @@ public class Shop : MonoBehaviour
     {
         Player = FindObjectOfType<PlayerMovement>();
         PlayerInv = Player.GetComponent<PlayerInventory>();
+        insufficientFund.gameObject.SetActive(false);
     }
 
     public void GiveMerchandise()
@@ -24,7 +27,11 @@ public class Shop : MonoBehaviour
         {
             PlayerInv.Score -= Price;
             PlayerInv.ManageSeeds(PlantToSell, 1);
-
+            insufficientFund.gameObject.SetActive(false);
+        }
+        else
+        {
+            insufficientFund.gameObject.SetActive(true);
         }
         PlayerInv.SetUIText();
     }
@@ -34,14 +41,16 @@ public class Shop : MonoBehaviour
         if (collision.gameObject == Player.gameObject)
         {
             Player.HandleInteraction += GiveMerchandise;
+            
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-         if (collision.gameObject == Player.gameObject)
+        if (collision.gameObject == Player.gameObject)
         {
             Player.HandleInteraction -= GiveMerchandise;
+            insufficientFund.gameObject.SetActive(false);
         }
     }
 

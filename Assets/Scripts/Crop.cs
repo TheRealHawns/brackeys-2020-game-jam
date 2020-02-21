@@ -74,6 +74,10 @@ public class Crop : MonoBehaviour
         Watered = false;
         var soilspr = soil.GetComponent<SpriteRenderer>();
         soilspr.color = soilColor;
+        if (waterLevel >= soil.plant.overworldSprites.Length)
+        {
+            waterLevel = soil.plant.overworldSprites.Length -1;
+        }
         if (spr != null) spr.sprite = soil.plant.overworldSprites[waterLevel];
     }
 

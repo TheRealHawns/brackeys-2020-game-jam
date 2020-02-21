@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Grape
   m_EditorClassIdentifier: 
   overworldSprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 5627d2a501fd1a342b61a78c84ef381d, type: 3}
+  - {fileID: 21300000, guid: dd44c5dd3f37b4042bee54dcbefec379, type: 3}
+  - {fileID: 21300000, guid: 4afde91c4fe671c43bb26846135ce710, type: 3}
   weight: 5
   value: 400
   growTime: 60
   wateringCount: 2
-  CropPrefab: {fileID: 0}
+  CropPrefab: {fileID: 9151517921396160941, guid: 83c4704d040fabe428519ad64d82d0fa,
+    type: 3}

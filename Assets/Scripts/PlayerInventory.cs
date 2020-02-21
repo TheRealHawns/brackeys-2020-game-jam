@@ -61,6 +61,7 @@ public class PlayerInventory : MonoBehaviour
 
     internal void ManageSeeds(SOPlant plant, int addOrSubtract)
     {
+        
         if (plant == plantList[0]) return;
 
         if (plant == plantList[1])
@@ -85,6 +86,7 @@ public class PlayerInventory : MonoBehaviour
             return;
         }
 
+        
     }
 
     

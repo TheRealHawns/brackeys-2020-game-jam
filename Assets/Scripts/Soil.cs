@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Soil : MonoBehaviour
 {
 
     PlayerMovement player;
     PlayerInventory playerInventory;
+    public Image HolePopUp;
     public SOPlant plant;
     bool hasCrop;
     bool hasHole;
@@ -16,6 +18,7 @@ public class Soil : MonoBehaviour
     {
         player = GameObject.FindObjectOfType<PlayerMovement>();
         playerInventory = player.GetComponent<PlayerInventory>();
+        HolePopUp.gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,6 +37,7 @@ public class Soil : MonoBehaviour
         if (collision.gameObject == player.gameObject)
         {
             player.HandleInteraction -= HandleCrop;
+            HolePopUp.gameObject.SetActive(false);
         }
     }
 
@@ -58,6 +62,7 @@ public class Soil : MonoBehaviour
         else if (hasHole)
         {
             Debug.Log("Checking to see if can remove hole");
+            HolePopUp.gameObject.SetActive(true);
             if (playerInventory.DirtCount > 0)
             {
                 removeHole();

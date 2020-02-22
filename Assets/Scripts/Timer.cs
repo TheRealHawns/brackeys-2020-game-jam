@@ -50,10 +50,13 @@ public class Timer : MonoBehaviour
 
     IEnumerator CountDown()
     {
-        for (int i = 0; i < startGameLengthTime; startGameLengthTime--)
+        for (int i = 0; i <= startGameLengthTime; startGameLengthTime--)
         {
             yield return new WaitForSecondsRealtime(1f);
-
+            if (startGameLengthTime == 420)
+            {
+                Earthquake.instance.StartEarthquake();
+            }
             timerText.text = string.Format("Time Remaining: {0} : {1}", Mathf.FloorToInt((float)startGameLengthTime/60), GetSeconds());
 
             if (PlantsWaterTime.ContainsKey(startGameLengthTime))

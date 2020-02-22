@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     }
     public void EndGame()
     {
-        if (timer <= 0)
+        if (timer < 0)
         {
            
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

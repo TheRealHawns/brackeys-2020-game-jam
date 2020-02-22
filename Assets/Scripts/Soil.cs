@@ -56,6 +56,10 @@ public class Soil : MonoBehaviour
         } 
     }
 
+    internal void CreateHole()
+    {
+    }
+
     internal void Reset()
     {
         hasCrop = false;

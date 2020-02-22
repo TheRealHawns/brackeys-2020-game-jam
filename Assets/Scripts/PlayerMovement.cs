@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E)) 
         {
             Debug.Log("Pressing E");
-            HandleInteraction();
+            HandleInteraction?.Invoke();
         }
 
         if (Input.GetKeyDown(KeyCode.R))

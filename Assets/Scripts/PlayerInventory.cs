@@ -18,6 +18,7 @@ public class PlayerInventory : MonoBehaviour
     public int CarrotCount = 0;
     public int TomatoCount = 0;
     public int GrapeCount = 0;
+    public int DirtCount = 0;
 
     public SOPlant[] plantList;
     public PlantToPlant plant = PlantToPlant.Potato;
@@ -85,6 +86,8 @@ public class PlayerInventory : MonoBehaviour
             GrapeCount += addOrSubtract;
             return;
         }
+
+        DirtCount++;
 
         
     }

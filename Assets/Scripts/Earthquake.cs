@@ -35,8 +35,8 @@ public class Earthquake : MonoBehaviour
         shake.m_FrequencyGain = 0f;
         foreach (Soil soil in soilArray)
         {
-            var coinFlip = Random.Range(0, 2);
-            if (coinFlip == 0)
+            var coinFlip = Random.Range(0, 3);
+            if (coinFlip <= 1)
             {
                 soil.CreateHole();
             }

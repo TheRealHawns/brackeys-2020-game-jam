@@ -10,7 +10,7 @@ public class Crop : MonoBehaviour
     int waterRespawntime;
     SpriteRenderer spr;
 
-    public bool Watered { get; private set; }
+    public bool IsWatered { get; private set; }
 
     private int waterLevel;
     private bool harvestable;
@@ -62,16 +62,16 @@ public class Crop : MonoBehaviour
 
     void InteractWithPlayer()
     {
-        if (!Watered)
+        if (!IsWatered)
         {
             Water();
-            Watered = true;
+            IsWatered = true;
         }
     }
 
     public void ResetWaterTimer()
     {
-        Watered = false;
+        IsWatered = false;
         var soilspr = soil.GetComponent<SpriteRenderer>();
         soilspr.color = soilColor;
         if (waterLevel >= soil.plant.overworldSprites.Length)
@@ -80,10 +80,11 @@ public class Crop : MonoBehaviour
         }
         if (spr != null) spr.sprite = soil.plant.overworldSprites[waterLevel];
     }
+    public int localTime;
 
     private void WaterRespawnAlarm()
     {
-        var localTime = Timer.instance.RequestTime();
+        localTime = Timer.instance.RequestTime();
         Timer.instance.Alarm(localTime - soil.plant.growTime, this);
     }
 

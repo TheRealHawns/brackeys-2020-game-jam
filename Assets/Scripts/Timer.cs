@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour
     [SerializeField] int GameLengthTime = 600;
     [HideInInspector] public int startGameLengthTime;
 
-    Dictionary<int, Crop> PlantsWaterTime = new Dictionary<int, Crop>();
+    public Dictionary<int, Crop> PlantsWaterTime = new Dictionary<int, Crop>();
     TextMeshProUGUI timerText;
 
 
@@ -57,7 +57,7 @@ public class Timer : MonoBehaviour
             {
                 Earthquake.instance.StartEarthquake();
             }
-            timerText.text = string.Format("Time Remaining: {0} : {1}", Mathf.FloorToInt((float)startGameLengthTime/60), GetSeconds());
+            timerText.text = string.Format("Time Remaining- {0} : {1}", Mathf.FloorToInt((float)startGameLengthTime/60), GetSeconds());
 
             if (PlantsWaterTime.ContainsKey(startGameLengthTime))
             {

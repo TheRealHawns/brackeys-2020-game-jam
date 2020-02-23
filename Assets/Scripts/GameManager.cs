@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
         }
  
         fader.gameObject.SetActive(true);
-        
+
+        SoundManager.Initialize();
     }
     
     public void Update()

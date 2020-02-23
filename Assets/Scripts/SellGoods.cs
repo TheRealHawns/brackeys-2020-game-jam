@@ -38,6 +38,7 @@ public class SellGoods : MonoBehaviour
     void SellMerchandise()
     {
         PlayerInv.CurrentWeight = 0;
+        PlayerInv.Money += PlayerInv.Earnings;
         PlayerInv.Score += PlayerInv.Earnings;
         PlayerInv.Earnings = 0;
         PlayerInv.SetUIText();

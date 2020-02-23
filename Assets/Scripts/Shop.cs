@@ -23,9 +23,9 @@ public class Shop : MonoBehaviour
 
     public void GiveMerchandise()
     {
-        if (PlayerInv.Score >= Price)
+        if (PlayerInv.Money >= Price)
         {
-            PlayerInv.Score -= Price;
+            PlayerInv.Money -= Price;
             PlayerInv.ManageSeeds(PlantToSell, 1);
             insufficientFund.gameObject.SetActive(false);
         }

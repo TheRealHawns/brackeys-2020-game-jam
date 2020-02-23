@@ -376,6 +376,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1853741947468857869, guid: a566c693ec756a646b0c3232e6fe9f01,
+        type: 3}
+      propertyPath: InitialMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 3a6a126a6029cd047adb5ebc61670209, type: 3}
+    - target: {fileID: 1853741947468857869, guid: a566c693ec756a646b0c3232e6fe9f01,
+        type: 3}
+      propertyPath: LoopingMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ef974d774a651b4080c73910578b253, type: 3}
     - target: {fileID: 5809712699468341810, guid: a566c693ec756a646b0c3232e6fe9f01,
         type: 3}
       propertyPath: m_Name

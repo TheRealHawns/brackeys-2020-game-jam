@@ -11,6 +11,7 @@ public class PlayerInventory : MonoBehaviour
     public int WeightLimit;
     public int Earnings;
     public int CurrentWeight;
+    public int Money;
     public int Score;
 
     public int WheatCount = 9999;
@@ -25,6 +26,7 @@ public class PlayerInventory : MonoBehaviour
 
     TextMeshProUGUI EarningsText;
     TextMeshProUGUI WeightText;
+    TextMeshProUGUI MoneyText;
     TextMeshProUGUI ScoreText;
 
 
@@ -32,6 +34,7 @@ public class PlayerInventory : MonoBehaviour
     {
         EarningsText = GameObject.Find("EarningText").GetComponent<TextMeshProUGUI>();
         WeightText = GameObject.Find("WeightText").GetComponent<TextMeshProUGUI>();
+        MoneyText = GameObject.Find("MoneyText").GetComponent<TextMeshProUGUI>();
         ScoreText = GameObject.Find("ScoreText").GetComponent<TextMeshProUGUI>();
     }
 
@@ -98,7 +101,8 @@ public class PlayerInventory : MonoBehaviour
     {
         EarningsText.text = "Current Earnings- $" + Earnings.ToString();
         WeightText.text = "Weight Limit- " + CurrentWeight.ToString() + " / 20";
-        ScoreText.text = "Money- $" + Score.ToString();
+        MoneyText.text = "Money- $" + Money.ToString();
+        ScoreText.text = "Score- " + Score.ToString();
     }
 }
 

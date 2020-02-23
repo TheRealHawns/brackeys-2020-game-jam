@@ -14,6 +14,9 @@ public class AudioLibrary : MonoBehaviour
 
     public SoundAudioClip[] soundAudioClipArray;
 
+    public AudioClip InitialMusic;
+    public AudioClip LoopingMusic;
+
     [System.Serializable]
     public class SoundAudioClip
     {

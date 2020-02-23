@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     GameObject time;
     int timer;
     GameObject playerScoreObject;
+    private GameObject playerHighScoreObject;
     TextMeshProUGUI playerScore;
     GameObject player;
 
@@ -51,11 +52,13 @@ public class GameManager : MonoBehaviour
         if (playerScoreObject == null)
         {
             playerScoreObject = GameObject.FindGameObjectWithTag("Score");
+            playerHighScoreObject = GameObject.FindGameObjectWithTag("HighScore");
         }
         else
         {
-            playerScore = playerScoreObject.GetComponentInChildren<TextMeshProUGUI>();
+            playerScore = playerScoreObject.GetComponent<TextMeshProUGUI>();
             playerScore.text = score.ToString();
+            playerHighScoreObject.GetComponent<TextMeshProUGUI>().text = PlayerPrefs.GetInt("HighScore", 0).ToString();
         }
        
     }
@@ -78,15 +81,29 @@ public class GameManager : MonoBehaviour
     public void OnFadeComplete()
     {
         SceneManager.LoadScene(levelToLoad);
+        SoundManager.PlayMusic();
+        StartCoroutine(SoundManager.WaitForFirstMusicLoop());
+        
     }
     public void EndGame()
     {
         if (timer < 0)
         {
-           
+
+            Destroy(GameObject.Find("Music"));
+            PlayerPrefs.GetInt("HighScore", 0);
+            if (score >= PlayerPrefs.GetInt("HighScore", 0))
+            {
+                PlayerPrefs.SetInt("HighScore", score);
+            }
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+
     }
    
+    public static IEnumerator WaitForFirstMusicLoop()
+    {
+        yield return new WaitUntil(() => GameObject.Find("Music").GetComponent<AudioSource>().isPlaying == false);
+    }
 
 }

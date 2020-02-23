@@ -35,6 +35,27 @@ public static class SoundManager
         audioSource.PlayOneShot(GetAudioClip(sound));
         }
     }
+    public static bool isPlayingMusic;
+    public static void PlayMusic()
+    {
+        isPlayingMusic = true;
+        GameObject musicGameObject = new GameObject("Music");
+        Object.DontDestroyOnLoad(musicGameObject);
+        AudioSource audioSource = musicGameObject.AddComponent<AudioSource>();
+        audioSource.volume = 0.5f;
+        audioSource.PlayOneShot(AudioLibrary.instance.InitialMusic);
+        
+
+    }
+        public static IEnumerator WaitForFirstMusicLoop()
+        {
+        var music = GameObject.Find("Music").GetComponent<AudioSource>();
+        yield return new WaitUntil(() => music.isPlaying == false);
+        music.clip = AudioLibrary.instance.LoopingMusic;
+        music.loop = true;
+        music.Play();   
+        }
+
     private static bool CanPlaySound(Sound sound)
     {
         switch (sound)

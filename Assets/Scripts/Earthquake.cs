@@ -30,6 +30,7 @@ public class Earthquake : MonoBehaviour
         var shake = cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         shake.m_FrequencyGain = 55f;
 
+        SoundManager.PlaySound(SoundManager.Sound.Earthquake);
         yield return new WaitForSecondsRealtime(3f);
 
         shake.m_FrequencyGain = 0f;

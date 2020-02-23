@@ -37,6 +37,13 @@ public class SellGoods : MonoBehaviour
 
     void SellMerchandise()
     {
+        if (PlayerInv.Earnings == 0)
+        {
+            SoundManager.PlaySound(SoundManager.Sound.FailToBuy);
+        } else
+        {
+            SoundManager.PlaySound(SoundManager.Sound.Sell);
+        }
         PlayerInv.CurrentWeight = 0;
         PlayerInv.Money += PlayerInv.Earnings;
         PlayerInv.Score += PlayerInv.Earnings;

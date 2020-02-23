@@ -13,7 +13,10 @@ public static class SoundManager
         Sell, 
         Buy, 
         Earthquake,
-        FailToBuy
+        FailToBuy,
+        FixHole,
+        Plant,
+        ReWater
     }
 
     private static Dictionary<Sound, float> soundTimerDictionary;
@@ -29,10 +32,9 @@ public static class SoundManager
     {
         if (CanPlaySound(sound))
         {
-
-        GameObject soundGameObject = new GameObject("Sound");
-        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        audioSource.PlayOneShot(GetAudioClip(sound));
+            GameObject soundGameObject = new GameObject("Sound");
+            AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
+            audioSource.PlayOneShot(GetAudioClip(sound));
         }
     }
     public static bool isPlayingMusic;
@@ -47,14 +49,17 @@ public static class SoundManager
         
 
     }
-        public static IEnumerator WaitForFirstMusicLoop()
-        {
+    public static IEnumerator WaitForFirstMusicLoop()
+    {
         var music = GameObject.Find("Music").GetComponent<AudioSource>();
-        yield return new WaitUntil(() => music.isPlaying == false);
-        music.clip = AudioLibrary.instance.LoopingMusic;
-        music.loop = true;
-        music.Play();   
+        if (music != null)
+        {
+            yield return new WaitUntil(() => music.isPlaying == false);
+            music.clip = AudioLibrary.instance.LoopingMusic;
+            music.loop = true;
+            music.Play();
         }
+    }
 
     private static bool CanPlaySound(Sound sound)
     {
@@ -66,7 +71,7 @@ public static class SoundManager
                 if (soundTimerDictionary.ContainsKey(sound))
                 {
                     float lastTimePlayed = soundTimerDictionary[sound];
-                    float playerMoveTimerMax = 0.05f;
+                    float playerMoveTimerMax = 0.5f;
                     if (lastTimePlayed + playerMoveTimerMax < Time.time)
                     {
                         soundTimerDictionary[sound] = Time.time;

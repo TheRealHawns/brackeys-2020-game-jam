@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] float moveSpeed = 500;
     PlayerInventory inv;
+    Animator anim;
+    SpriteRenderer spr;
 
     private bool withinRange = false;
 
@@ -20,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         inv = GetComponent<PlayerInventory>();
+        anim = GetComponent<Animator>();
+        spr = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -37,17 +41,32 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         rb.velocity = movement * moveSpeed;
+        anim.SetFloat("Speed", rb.velocity.magnitude);
+        if (rb.velocity.x != 0 && rb.velocity.x < 0)
+        {
+            spr.flipX = true;
+        } else
+        { if (rb.velocity.x != 0 && rb.velocity.x > 0)
+            spr.flipX = false;
+        }
+
+
+        if (rb.velocity != Vector2.zero)
+        {
+            SoundManager.PlaySound(SoundManager.Sound.Walk);
+        }
 
         if (Input.GetKeyDown(KeyCode.E)) 
         {
-            Debug.Log("Pressing E");
             HandleInteraction?.Invoke();
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             inv.plant = (PlantToPlant)(((int)inv.plant + 1) % (int)PlantToPlant.MAX_LENGTH);
-            Debug.Log(inv.plant);
+            var seedIcon = GameObject.Find("SeedToPlantBG").GetComponent<SeedIcon>();
+            SoundManager.PlaySound(SoundManager.Sound.Buy);
+            seedIcon.SwitchIcon(inv.plant);
         }
 
     }
@@ -59,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator WateringAnimation()
     {
+        anim.SetTrigger("Water");
         rb.velocity = Vector2.zero;
         state = State.Wait;
         yield return new WaitForSecondsRealtime(1f);

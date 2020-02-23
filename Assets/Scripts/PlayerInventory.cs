@@ -65,32 +65,38 @@ public class PlayerInventory : MonoBehaviour
 
     internal void ManageSeeds(SOPlant plant, int addOrSubtract)
     {
-        
+        var seed = GameObject.Find("SeedToPlantBG").GetComponent<SeedIcon>();
+        seed.RefreshSeedCount();
         if (plant == plantList[0]) return;
 
         if (plant == plantList[1])
         {
             PotatoCount += addOrSubtract;
+            seed.RefreshSeedCount();
             return;
         }
 
         if (plant == plantList[2])
         {
             CarrotCount += addOrSubtract ;
+            seed.RefreshSeedCount();
             return;
         }
         if (plant == plantList[3])
         {
             TomatoCount += addOrSubtract;
+            seed.RefreshSeedCount();
             return;
         }
         if (plant == plantList[4])
         {
             GrapeCount += addOrSubtract;
+            seed.RefreshSeedCount();
             return;
         }
 
         DirtCount++;
+        var dirt = GameObject.Find("DirtCount").GetComponent<TextMeshProUGUI>().text = DirtCount.ToString();
 
         
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,20 +53,23 @@ public class Soil : MonoBehaviour
             if (canPlant)
             {
                 playerInventory.ManageSeeds(plant, -1);
-                Debug.Log("Planting" + plant.name);
                 var crop = Instantiate(plant.CropPrefab, transform);
                 crop.transform.parent = transform;
                 crop.GetComponent<Crop>().SetSoil(this);
                 hasCrop = true;
+                SoundManager.PlaySound(SoundManager.Sound.Plant);
             }
         } 
         else if (hasHole)
         {
-            Debug.Log("Checking to see if can remove hole");
-            HolePopUp.gameObject.SetActive(true);
             if (playerInventory.DirtCount > 0)
             {
                 removeHole();
+            }
+            else
+            {
+            HolePopUp.gameObject.SetActive(true);
+                SoundManager.PlaySound(SoundManager.Sound.FailToBuy);
             }
         }
     }
@@ -73,9 +77,11 @@ public class Soil : MonoBehaviour
     private void removeHole()
     {
         playerInventory.DirtCount--;
+        var dirt = GameObject.Find("DirtCount").GetComponent<TextMeshProUGUI>().text = playerInventory.DirtCount.ToString();
         hasCrop = false;
         hasHole = false;
         GetComponent<SpriteRenderer>().color = Color.white;
+        SoundManager.PlaySound(SoundManager.Sound.FixHole);
     }
 
     internal void CreateHole()

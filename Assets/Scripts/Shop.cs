@@ -25,12 +25,14 @@ public class Shop : MonoBehaviour
     {
         if (PlayerInv.Money >= Price)
         {
+            SoundManager.PlaySound(SoundManager.Sound.Buy);
             PlayerInv.Money -= Price;
             PlayerInv.ManageSeeds(PlantToSell, 1);
             insufficientFund.gameObject.SetActive(false);
         }
         else
         {
+            SoundManager.PlaySound(SoundManager.Sound.FailToBuy);
             insufficientFund.gameObject.SetActive(true);
         }
         PlayerInv.SetUIText();

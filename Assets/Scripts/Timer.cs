@@ -84,6 +84,7 @@ public class Timer : MonoBehaviour
 
     internal void Alarm(int time, Crop crop)
     {
+        if (!PlantsWaterTime.ContainsKey(time))
         PlantsWaterTime.Add(time, crop);
     }
 

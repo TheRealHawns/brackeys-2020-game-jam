@@ -79,6 +79,7 @@ public class Crop : MonoBehaviour
             waterLevel = soil.plant.overworldSprites.Length -1;
         }
         if (spr != null) spr.sprite = soil.plant.overworldSprites[waterLevel];
+        SoundManager.PlaySound(SoundManager.Sound.ReWater);
     }
     public int localTime;
 
@@ -100,6 +101,7 @@ public class Crop : MonoBehaviour
         if (soil != null)
         {
             WaterRespawnAlarm();
+            SoundManager.PlaySound(SoundManager.Sound.Water);
             var soilspr = soil.GetComponent<SpriteRenderer>();
             soilColor = soilspr.color;
             soilspr.color = Color.gray;
@@ -111,6 +113,7 @@ public class Crop : MonoBehaviour
 
     private void Harvest() //WIP
     {
+        SoundManager.PlaySound(SoundManager.Sound.Harvest);
         inv.CurrentWeight += soil.plant.weight;
         inv.Earnings += soil.plant.value;
         inv.SetUIText();
